@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 >TODO list
+        <a class="btn btn-primary float-right" href="" >Add</a>
+    </h1>
+
+    <br>
+
+    {% for tag in tag_list %}
+        <p>
+          <tr>
+            <td>{{ tag.name }}</td>
+            <td>{{ driver.first_name }}</td>
+            <td>{{ driver.last_name }}</td>
+            <td>{{ driver.license_number }}</td>
+          </tr>
+        </p>
+
+        <p>Created: {{ task. }}</p>
+        <p>Tags:
+            {% for tag in task.tags.all %}
+                {{ tag.name }}
+            {% endfor %}
+            <a href=""
+               class="manage-task-tags">Update</a>
+            <a href=""
+               class="manage-task-tags">Delete</a>
+        </p>
+
+
+    {% endfor %}
+
+
+{% endblock %}
