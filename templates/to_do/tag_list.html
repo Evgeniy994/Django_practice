@@ -1,35 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1 >TODO list
+    <h1 >Tags
         <a class="btn btn-primary float-right" href="" >Add</a>
     </h1>
 
     <br>
-
-    {% for tag in tag_list %}
-        <p>
-          <tr>
-            <td>{{ tag.name }}</td>
-            <td>{{ driver.first_name }}</td>
-            <td>{{ driver.last_name }}</td>
-            <td>{{ driver.license_number }}</td>
-          </tr>
-        </p>
-
-        <p>Created: {{ task. }}</p>
-        <p>Tags:
-            {% for tag in task.tags.all %}
-                {{ tag.name }}
-            {% endfor %}
-            <a href=""
-               class="manage-task-tags">Update</a>
-            <a href=""
-               class="manage-task-tags">Delete</a>
-        </p>
-
-
-    {% endfor %}
-
+    <table class="table">
+        <tr>
+        <th>Name</th>
+        <th>Update</th>
+        <th>Delete</th>
+        {% for tag in tag_list %}
+            <p>
+              <tr>
+                <h3><td>{{ tag.name }}</td></h3>
+                <td><a href=""
+                   class="manage-task-tags">Update</a></td>
+                <td><a href="{% url 'to_do:tag-delete' pk=tag.id %}"
+                   class="manage-task-tags">Delete</a></td>
+              </tr>
+            </p>
+        </tr>
+        {% endfor %}
+    </table>
 
 {% endblock %}

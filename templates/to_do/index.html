@@ -1,1 +1,42 @@
-<h1>Something</h1>
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 >TODO list
+        <a style="float: right" class="btn btn-primary" href="" >Add task</a>
+    </h1>
+
+    <br>
+
+    {% for task in task_list %}
+        <p>
+            <h3>{{ task.content }}
+                {% if task.status %}
+                    <span style="color: green">Done</span>
+                    <a style="float: right" href="{% url 'to_do:task_change_status' pk=task.id action='undo' %}" class="btn btn-danger float-right-button">Undo</a>
+                {% else %}
+                    <span style="color: red">Not done</span>
+                    <a style="float: right" href="{% url 'to_do:task_change_status' pk=task.id action='success' %}" class="btn btn-success float-right-button">Complete</a>
+                {% endif %}
+            </h3>
+        </p>
+
+        <p>Created: {{ task.create }}
+            {% if task.deadline %}
+                Deadline: {{ task.deadline }}
+            {% endif %}
+        </p>
+
+        <p>Tags:
+            {% for tag in task.tag.all %}
+                {{ tag.name }}
+            {% endfor %}
+            <a href=""
+               class="manage-task-tags">Update</a>
+            <a href=""
+               class="manage-task-tags">Delete</a>
+        </p>
+
+
+    {% endfor %}
+
+{% endblock %}
